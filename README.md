@@ -1,5 +1,7 @@
 # Criminal Mind Project
 
+Project under the Computer Science Department of the University of Wisconsin-Whitewater. 
+
 This repository contains a data processing pipeline to create a comprehensive database of serial killers. The data is extracted from publicly available sources and processed into structured CSV files. The database is designed to assist detectives, researchers, and other interested parties in studying and analyzing serial killer cases.
 
 ## Database Schema
@@ -80,31 +82,20 @@ Collaborate: Share your findings with other users or collaborate with other rese
 
 By using the Serial Killers Profiling Database, you can gain insights into the world of serial killers and potentially contribute to solving open cases or furthering the understanding of these heinous crimes.
 
-## 
-Step 1: Create a GitHub account
-If you don't have a GitHub account, visit github.com and sign up for a free account.
+## Get the Github page on your local
+1. Clone the repository: Open your terminal or command prompt and navigate to the directory where you want to create the local repository. Use the git clone command followed by the repository's URL.
+git clone https://github.com/username/repository.git
 
-Step 2: Install Git
-Install Git on your local machine by following the instructions for your operating system on the Git website.
+2. Change into the repository directory: Use the cd command to change into the newly created local repository directory:
+cd repository
 
-Step 3: Create a new repository on GitHub
-Log in to your GitHub account.
-Click on the "+" icon in the top right corner of the page and select "New repository."
-Enter a name and description for your repository.
-Choose whether you want the repository to be public (visible to everyone) or private (visible only to you and collaborators).
-Select the checkbox to "Initialize this repository with a README" if you want to create a default README file.
-Click "Create repository."
-Step 4: Clone the repository to your local machine
-Open a terminal or command prompt on your computer.
-Navigate to the directory where you want to store your repository.
-Copy the repository URL from the GitHub page (it should look like https://github.com/your-username/your-repository-name.git).
-Run the following command to clone the repository to your local machine:
+3. Optional: Checkout a specific branch (if needed): If you want to work on a specific branch other than the default branch (usually master or main), use the git checkout command followed by the branch name. For example:
+git checkout branch-name
+Replace branch-name with the name of the branch you want to work on.
 
-git clone https://github.com/your-username/your-repository-name.git
+4. You now have a local copy of the GitHub repository on your machine. You can make changes, add files, commit changes, and perform other Git operations as needed.
 
-Change into the new repository directory:
 
-Change into the new repository directory:
 
 Step 5: Make changes to your repository
 Now you can add, edit, or delete files in the repository folder on your local machine.
