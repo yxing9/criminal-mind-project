@@ -1,18 +1,44 @@
 import os
 import requests
+from urllib.parse import urlparse, unquote
+import re
 
-#Turns a given URL into a file in this case a pdf file
-#NOTE: This function is not working properly printing the return of this function gives the following result
-# Albright_Charles.pdf 
-# Alcala__Rodney__2012_.pdf
-# Allanson_Patricia.pdf
-# Anderson_Dale_-_2005.pdf
-# Archer-Gilligan_Amy.pdf
-def process_url(url):
-    file_name = url.split('/')[-1]  # Get the last part of the URL, which is the file name
-    file_name = file_name.replace('%20', '_').replace(',', '').replace('.', '_')
-    print(file_name[:-4] + '.pdf')
-    return file_name[:-4] + '.pdf'  # Replace the last underscore with a dot for the file extension
+'''
+
+Functionality: Downloads pdf files from a csv file of urls.
+
+Call clean_data() to generate the correct file name for the downloaded pdf files 
+in the form of firstname_lastname.pdf
+e.g. given the link: "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Bathory,%20Elizabeth%20-%20spring,%202006.pdf"
+the correct output of file name should be "Elizabeth_Bathory.pdf"
+
+Note:
+1. Middle names are ignored. 
+    e.g. http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Armstrong,%20John%20Eric.pdf
+    John_Armstrong.pdf
+
+'''
+
+
+def clean_data(url):
+    path = unquote(urlparse(url).path)
+    last_part = path.split('/')[-1]
+    
+    # Look for a comma, if not found, look for a dot
+    separator_index = last_part.find(',')
+    separator = ',' if separator_index != -1 else '.'
+    if separator == '.':
+        separator_index = last_part.find('.')
+        
+    last_name = last_part[:separator_index]
+    first_name_with_extra = last_part[separator_index+2:].split(' ')[0]
+
+    # Checking if any word in the names starts with a non-capitalized letter
+    for name_part in re.split('[ ,.]', last_name + ' ' + first_name_with_extra):
+        if name_part and not name_part[0].isupper():
+            return 'Invalid name'
+    
+    return f'{first_name_with_extra}_{last_name}.pdf'
 
 #The download_pdf function is used to download given pdf files and returns the file path
 def download_pdf(url, download_path):
@@ -22,13 +48,14 @@ def download_pdf(url, download_path):
         print(f"Error downloading file from {url}: status code {response.status_code}")
         return None
 
-    file_name = process_url(url)
+    file_name = clean_data(url)
     file_path = os.path.join(download_path, file_name)
 
     with open(file_path, "wb") as f:
         f.write(response.content)
 
     return file_path
+
 # returns multiple pdf files and downloads then using the download_pdf function
 def download_pdfs(urls, download_path):
     if not os.path.exists(download_path):

@@ -1,0 +1,29 @@
+# Previous example of list of PDF URLs
+# pdf_urls = [
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Albright,%20Charles.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Alcala.%20Rodney%20_2012_.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Allanson,%20Patricia.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Anderson,%20Dale%20-%202005.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Archer-Gilligan,%20Amy.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Armstrong,%20John%20Eric.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Barfield,%20Velma%20-%202005,%20Fall.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Bathory,%20Elizabeth%20-%20spring,%202006.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Baumeister,%20Herb%20-%20fall,%202005.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Beets,%20Betty%20Lou%20_spring%202007_.pdf",
+#     "http://maamodt.asp.radford.edu/Psyc%20405/serial%20killers/Berdella,%20Robert.pdf"
+# ]
+
+
+# downloaded.py
+# #Turns a given URL into a file in this case a pdf file
+# #NOTE: This function is not working properly printing the return of this function gives the following result
+# # Albright_Charles.pdf 
+# # Alcala__Rodney__2012_.pdf
+# # Allanson_Patricia.pdf
+# # Anderson_Dale_-_2005.pdf
+# # Archer-Gilligan_Amy.pdf
+# def process_url(url):
+#     file_name = url.split('/')[-1]  # Get the last part of the URL, which is the file name
+#     file_name = file_name.replace('%20', '_').replace(',', '').replace('.', '_')
+#     print(file_name[:-4] + '.pdf')
+#     return file_name[:-4] + '.pdf'  # Replace the last underscore with a dot for the file extension

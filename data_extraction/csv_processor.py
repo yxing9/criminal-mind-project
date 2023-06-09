@@ -2,6 +2,15 @@ import os
 import csv
 import re
 
+'''
+
+Functionality: Processes and extracts useful information from newly downloaded csv files.
+
+1. Uses search phrases to select column names
+2. Convert yes/no to 1/0
+
+'''
+
 def parse_csv(input_csv):
     data = []
     search_phrases = [
@@ -29,7 +38,13 @@ def parse_csv(input_csv):
             for phrase, pattern in zip(search_phrases, regex_patterns):
                 match = pattern.search(row_str)
                 if match:
-                    row_data[phrase] = match.group(1)  # Extract the value after the search phrase
+                    value = match.group(1).strip()  # Extract the value after the search phrase
+                    if value.lower() == 'yes':
+                        row_data[phrase] = 1  # Convert 'Yes' to 1
+                    elif value.lower() == 'no':
+                        row_data[phrase] = 0  # Convert 'No' to 0
+                    else:
+                        row_data[phrase] = value  # Keep original value for non Yes/No entries
 
     killer_name = os.path.basename(input_csv)[:-4]  # Remove '.csv' from the file name
     row_data['Killer name'] = killer_name
