@@ -1,0 +1,45 @@
+Current approach:
+
+1. Download website content as PDFs.
+2. Convert downloaded PDFs to CSV files.
+3. Extract relevant data from these CSVs.
+4. Merge all CSVs containing the relevant data into one CSV file.
+
+Advantage: straightforward and potentially effective for certain websites, especially when the data is already well-structured in tables and can be directly converted into PDFs and then CSVs.
+
+Disadvantage: requires multiple transformations of the data, which might cause data loss or inaccuracies. Especially the case for the conversion from PDF to CSV, as the former is not inherently structured for data storage.
+
+
+Possible alternative approach:
+
+1. Direct Extraction: Access the website and directly extract table data without needing to download and convert content into different formats. This can be done using web scraping tools like BeautifulSoup or Scrapy in Python.
+
+Pseudocode:
+- Initialize scraper
+- Fetch web page content
+- Parse HTML to locate the table
+- Extract table data
+- Save data to CSV
+
+2. API Usage (if available): Check if the website provides an API to fetch data. If an API is available, it would be more efficient and reliable to use it instead of scraping the website.
+
+Pseudocode:
+- Send a GET request to the API endpoint
+- Receive the response (typically in JSON format)
+- Convert the response to CSV
+
+3. Data Cleaning and Validation: Regardless of the extraction method, it's crucial to clean and validate the data to ensure its quality before it is fed into a database. This could involve checking for duplicate entries, ensuring consistent data types, handling missing values, etc.
+
+Pseudocode:
+- Load the CSV file
+- Perform data cleaning operations (e.g., handle missing values, remove duplicates)
+- Validate data (ensure consistent data types, check integrity constraints)
+- Save cleaned and validated data back to CSV
+
+4. Automated Workflow: Implement an automated workflow to regularly fetch and update data, allowing the database to stay updated. This could be done using scheduling tools like cron (for Unix-based systems) or Task Scheduler (for Windows), or using workflow management systems like Apache Airflow.
+
+Pseudocode:
+- Define a function or script to perform the extraction, cleaning, and saving operations
+- Schedule this function or script to run at regular intervals
+
+Note: All of these alternative approaches aim to reduce the number of transformations the data has to undergo and increase the efficiency and reliability of the extraction process.
